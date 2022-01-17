@@ -122,11 +122,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Patches\SaberClashParticlesEffectPatch.cs" />
     <Compile Include="Utils\Accessors.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Configuration\PluginConfig.cs" />
-    <Compile Include="NoteCutParticlesEffectPatch.cs" />
+    <Compile Include="Patches\NoteCutParticlesEffectPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\ImgUtils.cs" />
+    <Compile Include="Utils\ParticlesUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="manifest.json" />

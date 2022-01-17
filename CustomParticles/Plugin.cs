@@ -32,9 +32,6 @@ namespace CustomParticles
 		{
 			Instance = this;
 			Plugin.Log = logger;
-			Plugin.Log?.Debug("Logger initialized.");
-
-			//zenjector.OnGame<GameInstaller>();
 		}
 
 		#region BSIPA Config
