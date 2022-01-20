@@ -11,12 +11,7 @@ namespace CustomParticles.Utils
 {
 	public static class ImgUtils
 	{
-		public static readonly int SPRITE_DIMENSIONS = 128;
 		public static readonly string DefaultPath = $@"{UnityGame.UserDataPath}\CustomParticles\";
-
-		public static bool IsTextureAtlas(Texture texture) => (NumberOfSpritesX(texture) > 1 || NumberOfSpritesY(texture) > 1);
-		public static int NumberOfSpritesX(Texture texture) => texture.width / SPRITE_DIMENSIONS;
-		public static int NumberOfSpritesY(Texture texture) => texture.height / SPRITE_DIMENSIONS;
 
 		public static Texture2D LoadTexture(string path)
 		{

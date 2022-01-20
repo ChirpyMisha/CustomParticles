@@ -122,10 +122,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\ConfigController.cs" />
+    <Compile Include="Patches\GlobalDustParticlesController.cs" />
+    <Compile Include="Patches\ObstacleSaberSparkleEffectPatch.cs" />
     <Compile Include="Patches\SaberClashParticlesEffectPatch.cs" />
     <Compile Include="Utils\Accessors.cs" />
     <Compile Include="Plugin.cs" />
-    <Compile Include="Configuration\PluginConfig.cs" />
+    <Compile Include="Configuration\Config.cs" />
     <Compile Include="Patches\NoteCutParticlesEffectPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ImgUtils.cs" />
@@ -135,6 +138,7 @@
     <EmbeddedResource Include="manifest.json" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Configuration\BSML\Settings.bsml" />
     <None Include="Directory.Build.props" Condition="Exists('Directory.Build.props')" />
     <None Include="Directory.Build.targets" Condition="Exists('Directory.Build.targets')" />
     <None Include="CustomParticles.csproj.user" Condition="Exists('CustomParticles.csproj.user')" />

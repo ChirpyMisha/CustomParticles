@@ -1,0 +1,25 @@
+﻿<!-- Inspiration for this BSML file was taken from the Particle Overdrive mod -->
+<settings-container xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='https://raw.githubusercontent.com/monkeymanboy/BSML-Docs/gh-pages/BSMLSchema.xsd'>
+	<horizontal pref-width='90'>
+		<text text='Custom Particles Settings' font-size='5' align='Center'/>
+	</horizontal>
+
+	<!--World Particles-->
+	<settings-submenu text='→ World Particles...'>
+		<settings-container>
+
+			<horizontal pref-width='90'>
+				<clickable-text text='⮌ Back' align='Left' click-event='back'/>
+				<text text='World Particles' font-size='5' align='Center'/>
+				<clickable-text text='⭯ Reset' align='Right' click-event='reset-world-particles'/>
+			</horizontal>
+			
+			<bool-setting text='Camera Noise' value='cameraNoiseEnable'></bool-setting>
+			<bool-setting text='Global Dust Particles' value='dustParticleEnable'></bool-setting>
+
+			<clickable-text text='⮌ Back' align='Left' click-event='back' />
+		</settings-container>
+	</settings-submenu>
+	
+	
+</settings-container>

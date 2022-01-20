@@ -15,11 +15,13 @@ namespace CustomParticles.Utils
 	{
 		public static FieldAccessor<NoteCutCoreEffectsSpawner, NoteCutParticlesEffect>.Accessor NoteCutParticlesEffect = FieldAccessor<NoteCutCoreEffectsSpawner, NoteCutParticlesEffect>.GetAccessor("_noteCutParticlesEffect");
 
-		public static FieldAccessor<NoteCutParticlesEffect, ParticleSystem>.Accessor NoteCutSparklesPS = FieldAccessor<NoteCutParticlesEffect, ParticleSystem>.GetAccessor("_sparklesPS");
+		public static FieldAccessor<NoteCutParticlesEffect, ParticleSystem>.Accessor NoteCutSparklePS = FieldAccessor<NoteCutParticlesEffect, ParticleSystem>.GetAccessor("_sparklesPS");
 		public static FieldAccessor<NoteCutParticlesEffect, ParticleSystem>.Accessor NoteCutExplosionPS = FieldAccessor<NoteCutParticlesEffect, ParticleSystem>.GetAccessor("_explosionPS");
 		//public static FieldAccessor<NoteCutParticlesEffect, ParticleSystem>.Accessor CorePS = FieldAccessor<NoteCutParticlesEffect, ParticleSystem>.GetAccessor("_corePS");
 
 		public static FieldAccessor<NoteCutParticlesEffect, ParticleSystem>.Accessor SaberClashGlowPS = FieldAccessor<NoteCutParticlesEffect, ParticleSystem>.GetAccessor("_explosionPS");
 		public static FieldAccessor<NoteCutParticlesEffect, ParticleSystem>.Accessor SaberClashSparklePS = FieldAccessor<NoteCutParticlesEffect, ParticleSystem>.GetAccessor("_sparklesPS");
+
+		public static FieldAccessor<ObstacleSaberSparkleEffect, ParticleSystem>.Accessor ObstacleSaberSparklePS = FieldAccessor<ObstacleSaberSparkleEffect, ParticleSystem>.GetAccessor("_sparkleParticleSystem");
 	}
 }

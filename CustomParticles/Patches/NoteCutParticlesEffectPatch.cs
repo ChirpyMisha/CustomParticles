@@ -1,4 +1,5 @@
-﻿using CustomParticles.Utils;
+﻿using CustomParticles.Configuration;
+using CustomParticles.Utils;
 using HarmonyLib;
 using IPA.Utilities;
 using System;
@@ -12,16 +13,13 @@ namespace CustomParticles.Patches
 	[HarmonyPatch("Awake")]
 	class NoteCutParticlesEffectPatch
 	{
-		private static readonly string sparklesTexturePath = $@"NoteCutSparklesParticles.png";
-		private static readonly string explosionTexturePath = $@"NoteCutExplosionParticles.png";
-
 		internal static void Postfix(ref NoteCutParticlesEffect __instance)
 		{
-			ParticleSystem sparklesPS = Accessors.NoteCutSparklesPS(ref __instance);
+			ParticleSystem sparklePS = Accessors.NoteCutSparklePS(ref __instance);
 			ParticleSystem explosionPS = Accessors.NoteCutExplosionPS(ref __instance);
 
-			ParticlesUtils.SetCustomParticles(sparklesPS, sparklesTexturePath);
-			ParticlesUtils.SetCustomParticles(explosionPS, explosionTexturePath);
+			ParticlesUtils.SetCustomParticles(sparklePS, Config.Instance.NoteCutSparkleParticles);
+			ParticlesUtils.SetCustomParticles(explosionPS, Config.Instance.NoteCutExplosionParticles);
 		}
 	}
 }

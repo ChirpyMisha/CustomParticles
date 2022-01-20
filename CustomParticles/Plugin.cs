@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using CustomParticles.Patches;
+using HarmonyLib;
 using IPA;
 using IPA.Config;
 using IPA.Config.Stores;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using IPALogger = IPA.Logging.Logger;
 
 namespace CustomParticles
@@ -39,10 +41,16 @@ namespace CustomParticles
         [Init]
         public void InitWithConfig(Config conf)
         {
-            Configuration.PluginConfig.Instance = conf.Generated<Configuration.PluginConfig>();
+            Configuration.Config.Instance = conf.Generated<Configuration.Config>();
             Plugin.Log?.Debug("Config loaded");
         }
 		#endregion
+
+		private void SceneManager_activeSceneChanged(Scene scene1, Scene scene2)
+		{
+			if (scene1.name == "MainMenu" || scene2.name == "GameCore")
+				GlobalDustParticlesController.LoadCustomParticles();
+		}
 
 
 		[OnEnable]
@@ -50,12 +58,17 @@ namespace CustomParticles
 		{
 			harmony = new Harmony("com.ChirpyMisha.BeatSaber.CustomParticles");
 			harmony.PatchAll(Assembly.GetExecutingAssembly());
+
+			SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
 		}
 
 		[OnDisable]
 		public void OnApplicationQuit()
 		{
 			harmony.UnpatchSelf();
+			GlobalDustParticlesController.LoadCustomParticles();
+
+			SceneManager.activeSceneChanged -= SceneManager_activeSceneChanged;
 		}
 	}
 }
