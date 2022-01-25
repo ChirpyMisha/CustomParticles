@@ -1,0 +1,30 @@
+﻿<horizontal xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='https://monkeymanboy.github.io/BSML-Docs/ https://raw.githubusercontent.com/monkeymanboy/BSML-Docs/gh-pages/BSMLSchema.xsd'>
+	<tab-selector tab-tag='new-tab'/>
+	<tab tags='new-tab' tab-name='Global Dust'>
+		<text text='Global Dust'/>
+	</tab>
+	<tab tags='new-tab' tab-name='Note Cut Sparkle'>
+		<text text='Note Cut Sparkle'/>
+	</tab>
+	<tab tags='new-tab' tab-name='Note Cut Explosion'>
+		<text text='Note Cut Explosion'/>
+	</tab>
+	<tab tags='new-tab' tab-name='Saber Clash Sparkle'>
+		<text text='Saber Clash Sparkle'/>
+	</tab>
+	<tab tags='new-tab' tab-name='Saber Clash Glow'>
+		<text text='Saber Clash Glow'/>
+	</tab>
+	<tab tags='new-tab' tab-name='Obstacle Saber Sparkle'>
+		<text text='Obstacle Saber Sparkle'/>
+	</tab>
+	
+	<vertical pad-left='50'>
+		<list id='particleList' expand-cell='true' select-cell='particleSelect' stick-scrolling='true' show-scrollbar='true' />
+	</vertical>
+	
+	<vertical child-control-height='false' horizontal-fit='PreferredSize'>
+		<button text='Reload all particles' on-click='reloadParticles' pref-width='27.5'/>
+	</vertical>
+	
+</horizontal>

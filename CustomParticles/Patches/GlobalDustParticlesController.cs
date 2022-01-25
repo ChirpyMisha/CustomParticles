@@ -24,8 +24,8 @@ namespace CustomParticles.Patches
 			if (dustPS != null)
 			{
 				MainModule main = dustPS.main;
-				main.startSize = new MinMaxCurve(Config.Instance.GlobalDustParticleSizeMinimum, Config.Instance.GlobalDustParticleSizeMaximum);
-				ParticlesUtils.SetCustomParticles(dustPS, Config.Instance.GlobalDustParticles);
+				main.startSize = new MinMaxCurve(PluginConfig.Instance.GlobalDustParticleSizeMinimum, PluginConfig.Instance.GlobalDustParticleSizeMaximum);
+				ParticlesUtils.SetCustomParticles(dustPS, PluginConfig.Instance.GlobalDustParticles);
 			}
 			else
 				Plugin.Log.Error("DustPS couldn't be found. Global particles cannot be changed.");

@@ -18,7 +18,7 @@ namespace CustomParticles.Patches
 		{
 			ParticleSystem sparklePS = Accessors.ObstacleSaberSparklePS(ref __instance);
 
-			ParticlesUtils.SetCustomParticles(sparklePS, Config.Instance.ObstacleSaberSparkleParticles);
+			ParticlesUtils.SetCustomParticles(sparklePS, PluginConfig.Instance.ObstacleSaberSparkleParticles);
 		}
 	}
 }

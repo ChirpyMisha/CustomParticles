@@ -18,8 +18,8 @@ namespace CustomParticles.Patches
 			ParticleSystem glowPS = Accessors.SaberClashGlowPS(ref __instance);
 			ParticleSystem sparklePS = Accessors.SaberClashSparklePS(ref __instance);
 
-			ParticlesUtils.SetCustomParticles(glowPS, Config.Instance.SaberClashGlowParticles);
-			ParticlesUtils.SetCustomParticles(sparklePS, Config.Instance.SaberClashSparkleParticles);
+			ParticlesUtils.SetCustomParticles(glowPS, PluginConfig.Instance.SaberClashGlowParticles);
+			ParticlesUtils.SetCustomParticles(sparklePS, PluginConfig.Instance.SaberClashSparkleParticles);
 		}
 	}
 }

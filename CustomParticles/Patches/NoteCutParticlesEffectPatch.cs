@@ -18,8 +18,8 @@ namespace CustomParticles.Patches
 			ParticleSystem sparklePS = Accessors.NoteCutSparklePS(ref __instance);
 			ParticleSystem explosionPS = Accessors.NoteCutExplosionPS(ref __instance);
 
-			ParticlesUtils.SetCustomParticles(sparklePS, Config.Instance.NoteCutSparkleParticles);
-			ParticlesUtils.SetCustomParticles(explosionPS, Config.Instance.NoteCutExplosionParticles);
+			ParticlesUtils.SetCustomParticles(sparklePS, PluginConfig.Instance.NoteCutSparkleParticles);
+			ParticlesUtils.SetCustomParticles(explosionPS, PluginConfig.Instance.NoteCutExplosionParticles);
 		}
 	}
 }

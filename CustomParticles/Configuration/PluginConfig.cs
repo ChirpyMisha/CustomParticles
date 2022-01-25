@@ -5,10 +5,10 @@ using UnityEngine;
 [assembly: InternalsVisibleTo(GeneratedStore.AssemblyVisibilityTarget)]
 namespace CustomParticles.Configuration
 {
-    internal class Config
+    internal class PluginConfig
     {
-        public static Config Instance { get; set; }
-		private static readonly ParticleSettings defaultSettings = new ParticleSettings("", ParticleSystemAnimationTimeMode.Lifetime, 1, 1, 1, 0, 0);
+        public static PluginConfig Instance { get; set; }
+		private static readonly ParticleSettings defaultSettings = new ParticleSettings("", false, ParticleSystemAnimationTimeMode.Lifetime, 1, 1, 1, 0, 0);
 
 		public virtual float GlobalDustParticleSizeMinimum { get; set; } = 0.01f;
 		public virtual float GlobalDustParticleSizeMaximum { get; set; } = 0.01f;
@@ -38,15 +38,16 @@ namespace CustomParticles.Configuration
         /// <summary>
         /// Call this to have BSIPA copy the values from <paramref name="other"/> into this config.
         /// </summary>
-        public virtual void CopyFrom(Config other)
+        public virtual void CopyFrom(PluginConfig other)
         {
             // This instance's members populated from other
         }
     }
 
-	public struct ParticleSettings
+	public class ParticleSettings
 	{
 		public string fileName { get; set; }
+		public bool isSpriteSheetEnabled { get; set; }
 		public ParticleSystemAnimationTimeMode mode { get; set; }
 		public int imgCountX { get; set; }
 		public int imgCountY { get; set; }
@@ -64,9 +65,14 @@ namespace CustomParticles.Configuration
 		//	//this.cycleCount = 0;
 		//	//this.fps = 0;
 		//}
-		public ParticleSettings(string fileName, ParticleSystemAnimationTimeMode mode, int imgCountX, int imgCountY, int frameCount, int fps = 0, int cycleCount = 0)
+		public ParticleSettings()
+		{
+			new ParticleSettings("defaultSprite.png", false, ParticleSystemAnimationTimeMode.Lifetime, 1, 1, 1);
+		}
+		public ParticleSettings(string fileName, bool isSpriteSheetEnabled, ParticleSystemAnimationTimeMode mode, int imgCountX, int imgCountY, int frameCount, int fps = 0, int cycleCount = 0)
 		{
 			this.fileName = fileName;
+			this.isSpriteSheetEnabled = isSpriteSheetEnabled;
 			this.mode = mode;
 			this.imgCountX = imgCountX;
 			this.imgCountY = imgCountY;
