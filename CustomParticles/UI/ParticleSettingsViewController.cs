@@ -1,6 +1,7 @@
 ﻿using BeatSaberMarkupLanguage.Attributes;
 using BeatSaberMarkupLanguage.ViewControllers;
 using CustomParticles.Configuration;
+using CustomParticles.Utils;
 using HMUI;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,19 @@ namespace CustomParticles.UI
 	{
 		private static string enabledTextColor = "#" + ColorUtility.ToHtmlStringRGB(Color.white);
 		private static string disabledTextColor = "#" + ColorUtility.ToHtmlStringRGB(Color.grey);
-
+		private static string invalidTextColor = "#" + ColorUtility.ToHtmlStringRGB(Color.red);
 		public override string ResourceName => "CustomParticles.UI.Views.ParticleSettings.bsml";
+
+		internal Action<ParticleSettings> selectedParticleSystemChanged;
+		internal Action selectedImageChanged;
+		private void InvokeParticleSystemChanged() => selectedParticleSystemChanged?.Invoke(settings);
+		private void InvokeImageChanged() => selectedImageChanged?.Invoke();
+
 		private PluginConfig config;
 		private ParticleSettings settings;
 
 		private string GetInteractabilityColor(bool isEnabled) => isEnabled ? enabledTextColor : disabledTextColor;
+		private string GetValidityColor(bool isValid) => isValid ? enabledTextColor : invalidTextColor;
 
 		[Inject]
 		public void Construct(PluginConfig config)
@@ -61,6 +69,9 @@ namespace CustomParticles.UI
 			NotifyPropertyChanged(nameof(IsAnimationEnabledColor));
 		}
 
+		
+
+
 		[UIValue("is-sprite-sheet-enabled")]
 		private bool IsSpriteSheetEnabled => settings.isSpriteSheetEnabled;
 		[UIValue("is-animation-enabled")]
@@ -71,11 +82,19 @@ namespace CustomParticles.UI
 		[UIValue("is-animation-enabled-color")]
 		private string IsAnimationEnabledColor => GetInteractabilityColor(IsAnimationEnabled);
 
+		[UIValue("is-file-name-valid-color")]
+		private string IsFileNameValidColor => GetValidityColor(ImgUtils.IsValidFile(settings.fileName));
+
 		[UIValue("FileName")]
 		public virtual string FileName
 		{
 			get => settings.fileName;
-			set => settings.fileName = value;
+			set
+			{
+				settings.fileName = value;
+				NotifyPropertyChanged(nameof(IsFileNameValidColor));
+				InvokeImageChanged();
+			}
 		}
 
 		[UIValue("EnableSpriteSheet")]
@@ -166,6 +185,7 @@ namespace CustomParticles.UI
 			}
 
 			UpdateSettingsProperties();
+			selectedParticleSystemChanged?.Invoke(settings);
 		} 
 
 

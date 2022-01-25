@@ -1,11 +1,11 @@
-﻿<horizontal xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='https://monkeymanboy.github.io/BSML-Docs/ https://raw.githubusercontent.com/monkeymanboy/BSML-Docs/gh-pages/BSMLSchema.xsd'>
-	<vertical child-control-height='false'>
-		<horizontal bg='panel-top' pad-left='8' pad-right='8' horizontal-fit='PreferredSize'>
-			<text text='Note Preview' align='Center' font-size='8' />
-		</horizontal>
-		<horizontal pref-width='100' pref-height='45'>
-			<text-page id='error-description' />
-		</horizontal>
-		<img src='~preview-img'/>
-	</vertical>
-</horizontal>
+﻿<vertical child-control-height='false' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='https://monkeymanboy.github.io/BSML-Docs/ https://raw.githubusercontent.com/monkeymanboy/BSML-Docs/gh-pages/BSMLSchema.xsd'>
+	<horizontal bg='panel-top' pad-left='8' pad-right='8' horizontal-fit='PreferredSize'>
+		<text text='Particle Image Preview' align='Center' font-size='8' />
+	</horizontal>
+	<!--<horizontal pref-width='100' >
+		<text-page id='error-description' />
+	</horizontal>-->
+	<horizontal bg='round-rect-panel' pref-width='70' pref-height='60'>
+		<img src='~img-path' preserve-aspect='true' />
+	</horizontal>
+</vertical>

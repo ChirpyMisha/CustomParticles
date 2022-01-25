@@ -21,5 +21,10 @@ namespace CustomParticles.Utils
 			ImageConversion.LoadImage(newTexture, textureData);
 			return newTexture;
 		}
+
+		internal static bool IsValidFile(string fileName)
+		{
+			return File.Exists(DefaultPath + fileName);
+		}
 	}
 }
