@@ -8,7 +8,7 @@
 		<tab tags='particle-tab' tab-name='Obstacle Sparkle'/>
 		
 		<modifier-container child-expand-width='true' horizontal-fit='PreferredSize' pref-height='60'>
-			<string-setting text='File Name' hover-hint='Enter the file name of the png you want to use'
+			<string-setting text='~file-name-setting-string' hover-hint='Enter the file name of the png you want to use'
 										 value='FileName' apply-on-change='true' bind-value='true' color='~is-file-name-valid-color'/>
 			<checkbox-setting text='Enable Sprite Sheet' hover-hint='If you want to use random images or animated particle images, enable this.'
 										 value='EnableSpriteSheet' apply-on-change='true' bind-value='true'/>

@@ -35,6 +35,7 @@ namespace CustomParticles.UI
 
 		//private float tempSpriteRangeBegin = -1;
 		//private float tempSpriteRangeEnd = -1;
+		private string selectedTabName = "Global Dust";
 
 		[Inject]
 		public void Construct(PluginConfig config)
@@ -48,6 +49,8 @@ namespace CustomParticles.UI
 			UpdateSpriteSheetEnabledProperty();
 
 			NotifyPropertyChanged(nameof(FileName));
+			NotifyPropertyChanged(nameof(IsFileNameValidColor));
+			NotifyPropertyChanged(nameof(FileNameSettingString));
 			NotifyPropertyChanged(nameof(EnableSpriteSheet));
 			NotifyPropertyChanged(nameof(AnimationTimeMode));
 			NotifyPropertyChanged(nameof(ImgCountX));
@@ -97,6 +100,8 @@ namespace CustomParticles.UI
 
 		[UIValue("is-file-name-valid-color")]
 		private string IsFileNameValidColor => GetValidityColor(ImgUtils.IsValidFile(settings.fileName));
+		[UIValue("file-name-setting-string")]
+		private string FileNameSettingString => $"{selectedTabName} File Name";
 
 		[UIValue("FileName")]
 		public virtual string FileName
@@ -205,28 +210,34 @@ namespace CustomParticles.UI
 		[UIAction("particle-tab-selected")]
 		public void OnParticleTabSelected(SegmentedControl segControl, int i)
 		{
-			Plugin.Log.Notice("== Tab Selected ==");
-			Plugin.Log.Notice($"segControl: Name={segControl.name}, selectedCellNumber={segControl.selectedCellNumber} tag={segControl.tag}");
+			//Plugin.Log.Notice("== Tab Selected ==");
+			//Plugin.Log.Notice($"segControl: Name={segControl.name}, selectedCellNumber={segControl.selectedCellNumber} tag={segControl.tag}");
 
 			switch (i)
 			{
 				case 0:
 					settings = config.GlobalDustParticles;
+					selectedTabName = "Global Dust";
 					break;
 				case 1:
 					settings = config.NoteCutSparkleParticles;
+					selectedTabName = "NoteCut Sparkle";
 					break;
 				case 2:
 					settings = config.NoteCutExplosionParticles;
+					selectedTabName = "NoteCut Explosion";
 					break;
 				case 3:
 					settings = config.SaberClashSparkleParticles;
+					selectedTabName = "SaberClash Sparkle";
 					break;
 				case 4:
 					settings = config.SaberClashGlowParticles;
+					selectedTabName = "SaberClash Glow";
 					break;
 				case 5:
 					settings = config.ObstacleSaberSparkleParticles;
+					selectedTabName = "Obstacle Sparkle";
 					break;
 			}
 
