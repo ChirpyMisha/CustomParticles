@@ -16,7 +16,7 @@ namespace CustomParticles.UI
 		private ParticleSettings settings = PluginConfig.Instance.GlobalDustParticles;
 
 		[UIValue("img-path")]
-		private string ImagePath => $"{ImgUtils.DefaultPath}{settings.fileName}";
+		private string ImagePath => ImgUtils.FullPath(settings.fileName);
 
 		internal void OnSelectedParticleSystemChanged(ParticleSettings settings)
 		{

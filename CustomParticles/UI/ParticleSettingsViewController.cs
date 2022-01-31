@@ -33,6 +33,9 @@ namespace CustomParticles.UI
 		private string GetInteractabilityColor(bool isEnabled) => isEnabled ? enabledTextColor : disabledTextColor;
 		private string GetValidityColor(bool isValid) => isValid ? enabledTextColor : invalidTextColor;
 
+		//private float tempSpriteRangeBegin = -1;
+		//private float tempSpriteRangeEnd = -1;
+
 		[Inject]
 		public void Construct(PluginConfig config)
 		{
@@ -42,18 +45,16 @@ namespace CustomParticles.UI
 
 		private void UpdateSettingsProperties()
 		{
-			NotifyPropertyChanged(nameof(IsSpriteSheetEnabled));
-			NotifyPropertyChanged(nameof(IsSpriteSheetEnabledColor));
-			NotifyPropertyChanged(nameof(IsAnimationEnabled));
-			NotifyPropertyChanged(nameof(IsAnimationEnabledColor));
+			UpdateSpriteSheetEnabledProperty();
 
 			NotifyPropertyChanged(nameof(FileName));
 			NotifyPropertyChanged(nameof(EnableSpriteSheet));
 			NotifyPropertyChanged(nameof(AnimationTimeMode));
 			NotifyPropertyChanged(nameof(ImgCountX));
 			NotifyPropertyChanged(nameof(ImgCountY));
-			NotifyPropertyChanged(nameof(FrameCount));
-			NotifyPropertyChanged(nameof(CycleCount));
+			//NotifyPropertyChanged(nameof(SpriteRangeBegin));
+			//NotifyPropertyChanged(nameof(SpriteRangeEnd));
+			//NotifyPropertyChanged(nameof(CycleCount));
 			NotifyPropertyChanged(nameof(FPS));
 		}
 
@@ -61,12 +62,20 @@ namespace CustomParticles.UI
 		{
 			NotifyPropertyChanged(nameof(IsSpriteSheetEnabled));
 			NotifyPropertyChanged(nameof(IsSpriteSheetEnabledColor));
-			UpdateAnimationEnabledProperty();
+			NotifyPropertyChanged(nameof(ImgCountX));
+			NotifyPropertyChanged(nameof(ImgCountY));
+			UpdateAnimationProperties();
 		}
-		private void UpdateAnimationEnabledProperty()
+		private void UpdateAnimationProperties()
 		{
-			NotifyPropertyChanged(nameof(IsAnimationEnabled));
-			NotifyPropertyChanged(nameof(IsAnimationEnabledColor));
+			//NotifyPropertyChanged(nameof(IsLifetimeEnabled));
+			NotifyPropertyChanged(nameof(IsFPSEnabled));
+			//NotifyPropertyChanged(nameof(IsLifetimeEnabledColor));
+			NotifyPropertyChanged(nameof(IsFPSEnabledColor));
+
+			//NotifyPropertyChanged(nameof(SpriteRangeBegin));
+			//NotifyPropertyChanged(nameof(SpriteRangeEnd));
+			NotifyPropertyChanged(nameof(FPS));
 		}
 
 		
@@ -74,13 +83,17 @@ namespace CustomParticles.UI
 
 		[UIValue("is-sprite-sheet-enabled")]
 		private bool IsSpriteSheetEnabled => settings.isSpriteSheetEnabled;
-		[UIValue("is-animation-enabled")]
-		private bool IsAnimationEnabled => IsSpriteSheetEnabled && settings.mode == ParticleSystemAnimationTimeMode.FPS;
+		//[UIValue("is-lifetime-enabled")]
+		//private bool IsLifetimeEnabled => IsSpriteSheetEnabled && settings.mode == ParticleSystemAnimationTimeMode.Lifetime;
+		[UIValue("is-fps-enabled")]
+		private bool IsFPSEnabled => IsSpriteSheetEnabled && settings.mode == ParticleSystemAnimationTimeMode.FPS;
 
 		[UIValue("is-sprite-sheet-enabled-color")]
 		private string IsSpriteSheetEnabledColor => GetInteractabilityColor(IsSpriteSheetEnabled);
-		[UIValue("is-animation-enabled-color")]
-		private string IsAnimationEnabledColor => GetInteractabilityColor(IsAnimationEnabled);
+		//[UIValue("is-lifetime-enabled-color")]
+		//private string IsLifetimeEnabledColor => GetInteractabilityColor(IsLifetimeEnabled);
+		[UIValue("is-fps-enabled-color")]
+		private string IsFPSEnabledColor => GetInteractabilityColor(IsFPSEnabled);
 
 		[UIValue("is-file-name-valid-color")]
 		private string IsFileNameValidColor => GetValidityColor(ImgUtils.IsValidFile(settings.fileName));
@@ -117,42 +130,75 @@ namespace CustomParticles.UI
 			{
 				settings.mode = value;
 				NotifyPropertyChanged(nameof(AnimationTimeMode));
-				UpdateAnimationEnabledProperty();
+				UpdateAnimationProperties();
 			}
 		}
 
 		[UIValue("ImgCountX")]
 		public virtual int ImgCountX
 		{
-			get => settings.imgCountX;
-			set => settings.imgCountX = value;
+			get => IsSpriteSheetEnabled ? settings.imgCountX : 0;
+			set
+			{
+				settings.imgCountX = value;
+				//if (ImgCountX * ImgCountY < SpriteRangeEnd)
+				//{
+				//	tempSpriteRangeEnd = ImgCountX * ImgCountY;
+				//	if (tempSpriteRangeEnd < SpriteRangeBegin)
+				//		tempSpriteRangeBegin = ImgCountX * ImgCountY;
+				//}
+			}
 		}
 
 		[UIValue("ImgCountY")]
 		public virtual int ImgCountY
 		{
-			get => settings.imgCountY;
-			set => settings.imgCountY = value;
+			get => IsSpriteSheetEnabled ? settings.imgCountY : 0;
+			set
+			{
+				settings.imgCountY = value;
+			}
 		}
 
-		[UIValue("FrameCount")]
-		public virtual int FrameCount
-		{
-			get => settings.frameCount;
-			set => settings.frameCount = value;
-		}
+		//[UIValue("SpriteRangeBegin")]
+		//public virtual float SpriteRangeBegin
+		//{
+		//	get => IsLifetimeEnabled ? settings.spriteRangeBegin : 0;
+		//	set
+		//	{
+		//		settings.spriteRangeBegin = value;
+		//		if (value > settings.spriteRangeEnd) 
+		//			SpriteRangeEnd = value;
+		//		NotifyPropertyChanged(nameof(SpriteRangeEnd));
+		//		NotifyPropertyChanged(nameof(SpriteRangeBegin));
+		//	}
+		//}
 
-		[UIValue("CycleCount")]
-		public virtual int CycleCount
-		{
-			get => settings.cycleCount;
-			set => settings.cycleCount = value;
-		}
+		//[UIValue("SpriteRangeEnd")]
+		//public virtual float SpriteRangeEnd
+		//{
+		//	get => IsLifetimeEnabled ? settings.spriteRangeEnd : 0;
+		//	set
+		//	{
+		//		settings.spriteRangeEnd = value;
+		//		if (value < settings.spriteRangeBegin) 
+		//			SpriteRangeBegin = value;
+		//		NotifyPropertyChanged(nameof(SpriteRangeBegin));
+		//		NotifyPropertyChanged(nameof(SpriteRangeEnd));
+		//	}
+		//}
+
+		//[UIValue("CycleCount")]
+		//public virtual int CycleCount
+		//{
+		//	get => settings.cycleCount;
+		//	set => settings.cycleCount = value;
+		//}
 
 		[UIValue("FPS")]
 		public virtual int FPS
 		{
-			get => settings.fps;
+			get => IsFPSEnabled ? settings.fps : 0;
 			set => settings.fps = value;
 		}
 
@@ -198,8 +244,8 @@ namespace CustomParticles.UI
 
 		private static Dictionary<ParticleSystemAnimationTimeMode, string> AnimationTimeModeLabelOptionsToNames = new Dictionary<ParticleSystemAnimationTimeMode, string>()
 		{
-			{ ParticleSystemAnimationTimeMode.Lifetime, "Lifetime" },
-			{ ParticleSystemAnimationTimeMode.FPS, "FPS" }
+			{ ParticleSystemAnimationTimeMode.Lifetime, "Random Static" },
+			{ ParticleSystemAnimationTimeMode.FPS, "Animated" }
 		};
 	}
 }

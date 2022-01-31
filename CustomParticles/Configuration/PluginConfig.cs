@@ -51,33 +51,25 @@ namespace CustomParticles.Configuration
 		public ParticleSystemAnimationTimeMode mode { get; set; }
 		public int imgCountX { get; set; }
 		public int imgCountY { get; set; }
-		public int frameCount { get; set; }
-		public int cycleCount { get; set; }
+		//internal float spriteRangeBegin { get; set; }
+		//internal float spriteRangeEnd { get; set; }
+		//public int cycleCount { get; set; }
 		public int fps { get; set; }
 
-		//public ParticleSettings(ParticleSystemAnimationTimeMode mode, int imgCountX, int imgCountY, int frameCount)
-		//{
-		//	ParticleSettings(mode, imgCountX, imgCountY, frameCount, 0, 0);
-		//	//this.mode = mode;
-		//	//this.imgCountX = imgCountX;
-		//	//this.imgCountY = imgCountY;
-		//	//this.frameCount = frameCount;
-		//	//this.cycleCount = 0;
-		//	//this.fps = 0;
-		//}
 		public ParticleSettings()
 		{
-			new ParticleSettings("defaultSprite.png", false, ParticleSystemAnimationTimeMode.Lifetime, 1, 1, 1);
+			new ParticleSettings("defaultSprite.png", false, ParticleSystemAnimationTimeMode.Lifetime, 1, 1, 1, 0, 1);
 		}
-		public ParticleSettings(string fileName, bool isSpriteSheetEnabled, ParticleSystemAnimationTimeMode mode, int imgCountX, int imgCountY, int frameCount, int fps = 0, int cycleCount = 0)
+		public ParticleSettings(string fileName, bool isSpriteSheetEnabled, ParticleSystemAnimationTimeMode mode, int imgCountX, int imgCountY, float spriteRangeBegin, float spriteRangeEnd, int fps = 0, int cycleCount = 0)
 		{
 			this.fileName = fileName;
 			this.isSpriteSheetEnabled = isSpriteSheetEnabled;
 			this.mode = mode;
 			this.imgCountX = imgCountX;
 			this.imgCountY = imgCountY;
-			this.frameCount = frameCount;
-			this.cycleCount = cycleCount;
+			//this.spriteRangeBegin = spriteRangeBegin;
+			//this.spriteRangeEnd = spriteRangeEnd;
+			//this.cycleCount = cycleCount;
 			this.fps = fps;
 		}
 	}

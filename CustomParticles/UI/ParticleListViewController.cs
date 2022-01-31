@@ -15,22 +15,20 @@ namespace CustomParticles.UI
 	{
 		public override string ResourceName => "CustomParticles.UI.Views.ParticleList.bsml";
 
-		private PluginConfig pluginConfig;
-		private GameplaySetupViewController gameplaySetupViewController;
+		private PluginConfig config;
 
-		public Action<Texture> customParticleChanged;
-		public Action customParticlesReloaded;
+		//public Action<Texture> customParticleChanged;
+		//public Action customParticlesReloaded;
 
 		[Inject]
-		public void Construct(PluginConfig pluginConfig, GameplaySetupViewController gameplaySetupViewController)
+		public void Construct(PluginConfig config)
 		{
-			this.pluginConfig = pluginConfig;
-			this.gameplaySetupViewController = gameplaySetupViewController;
+			this.config = config;
 		}
 
-		[UIAction("#post-parse")]
-		public void SetupList()
-		{
+		//[UIAction("#post-parse")]
+		//public void SetupList()
+		//{
 			//customListTableData.data.Clear();
 
 			//foreach (CustomNote note in _noteAssetLoader.CustomNoteObjects)
@@ -45,6 +43,6 @@ namespace CustomParticles.UI
 
 			//customListTableData.tableView.ScrollToCellWithIdx(selectedNote, TableView.ScrollPositionType.Beginning, false);
 			//customListTableData.tableView.SelectCellWithIdx(selectedNote);
-		}
+		//}
 	}
 }

@@ -7,13 +7,13 @@
 		<tab tags='particle-tab' tab-name='SaberClash Glow'/>
 		<tab tags='particle-tab' tab-name='Obstacle Sparkle'/>
 		
-		<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
+		<modifier-container child-expand-width='true' horizontal-fit='PreferredSize' pref-height='60'>
 			<string-setting text='File Name' hover-hint='Enter the file name of the png you want to use'
 										 value='FileName' apply-on-change='true' bind-value='true' color='~is-file-name-valid-color'/>
 			<checkbox-setting text='Enable Sprite Sheet' hover-hint='If you want to use random images or animated particle images, enable this.'
 										 value='EnableSpriteSheet' apply-on-change='true' bind-value='true'/>
 			<!--<horizontal active='~is-sprite-sheet-enabled'>-->
-				<dropdown-list-setting text='Animation Time Mode' hover-hint='Lifetime is for random particles. FPS is for animated particle images.'
+			<dropdown-list-setting text='Animation Time Mode' hover-hint='Lifetime is for random particles. FPS is for animated particle images.'
 										 value='AnimationTimeMode' apply-on-change='true' interactable='~is-sprite-sheet-enabled' color='~is-sprite-sheet-enabled-color'
 										 options='AnimationTimeModeLabelOptionsList' formatter='AnimationTimeModeLabelOptionsFormat' bind-value='true'/>
 			<!--</horizontal>-->
@@ -23,14 +23,17 @@
 			<increment-setting text='Vertical Image Count' hover-hint='How many sprites does the spritesheet contain vertically?'
 										 value='ImgCountY' apply-on-change='true' interactable='~is-sprite-sheet-enabled' color='~is-sprite-sheet-enabled-color'
 										 integer-only='true' min='1' max='420' increment='1' bind-value='true'/>
-			<increment-setting text='Number Of Sprites' hover-hint='How many sprites does the spritesheet contain?'
-										 value='FrameCount' apply-on-change='true' interactable='~is-sprite-sheet-enabled' color='~is-sprite-sheet-enabled-color'
-										 integer-only='true' min='1' max='420' increment='1' bind-value='true'/>
+			<!--<increment-setting text='Active Sprite Range Begin' hover-hint='Select the first sprite from the range of sprites you want to use. (Enter 1 to start from the 1st sprite)' 
+											 value='SpriteRangeBegin' apply-on-change='true' interactable='~is-lifetime-enabled' color='~is-lifetime-enabled-color'
+											 integer-only='true' min='1' increment='1' bind-value='true'/>
+			<increment-setting text='Active Sprite Range End' hover-hint='Select the last sprite from the lange of sprites you want to use.'
+											 value='SpriteRangeEnd' apply-on-change='true' interactable='~is-lifetime-enabled' color='~is-lifetime-enabled-color'
+											 integer-only='true' min='1' increment='1' bind-value='true'/>
 			<increment-setting text='Animation Cycle Count' hover-hint='How many times should the animation loop?'
 										 value='CycleCount' apply-on-change='true' interactable='~is-animation-enabled' color='~is-animation-enabled-color'
-										 integer-only='true' min='0' max='420' increment='1' bind-value='true'/>
-			<increment-setting text='Animation FPS' hover-hint='At what frame rate should the animation run?'
-										 value='FPS' apply-on-change='true' interactable='~is-animation-enabled' color='~is-animation-enabled-color'
+										 integer-only='true' min='0' max='420' increment='1' bind-value='true'/>-->
+			<increment-setting text='Animation FPS' hover-hint='At what frame rate should the animation run? Setting this to 0 will make the animation cycle once through the lifetime of the particle.'
+										 value='FPS' apply-on-change='true' interactable='~is-fps-enabled' color='~is-fps-enabled-color'
 										 integer-only='true' min='0' max='420' increment='1' bind-value='true'/>
 		</modifier-container>
 </vertical>

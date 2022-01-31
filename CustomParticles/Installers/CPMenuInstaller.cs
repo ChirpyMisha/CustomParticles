@@ -23,8 +23,8 @@ namespace CustomParticles.Installers
 		{
 			_siraLog.Info("Installing menu containers..");
 			Container.Bind<ParticlePreviewViewController>().FromNewComponentAsViewController().AsSingle();
-			Container.Bind<ParticleSettingsViewController>().FromNewComponentAsViewController().AsSingle();
 			Container.Bind<ParticleListViewController>().FromNewComponentAsViewController().AsSingle();
+			Container.Bind<ParticleSettingsViewController>().FromNewComponentAsViewController().AsSingle();
 			Container.Bind<ParticleFlowCoordinator>().FromNewComponentOnNewGameObject().AsSingle();
 			Container.BindInterfacesTo<CustomParticlesViewManager>().AsSingle();
 			Container.BindInterfacesTo<MenuButtonManager>().AsSingle();

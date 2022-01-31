@@ -32,7 +32,7 @@ namespace CustomParticles.UI
 				SetTitle("Custom Particles");
 				showBackButton = true;
 			}
-			ProvideInitialViewControllers(particleSettingsView, null, particlePreviewView);
+			ProvideInitialViewControllers(particleSettingsView, particleListView, particlePreviewView);
 
 			//ProvideInitialViewControllers(particleListView, particleSettingsView, particlePreviewView);
 			//particleListView.customParticleChanged += particleSettingsView.OnParticleWasChanged;
