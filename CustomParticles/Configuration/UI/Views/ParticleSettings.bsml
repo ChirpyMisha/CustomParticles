@@ -1,11 +1,11 @@
 ﻿<vertical child-control-height='false'  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='https://monkeymanboy.github.io/BSML-Docs/ https://raw.githubusercontent.com/monkeymanboy/BSML-Docs/gh-pages/BSMLSchema.xsd'>
-		<tab-selector tab-tag='particle-tab' select-cell='particle-tab-selected'/>
+		<!--<tab-selector tab-tag='particle-tab' select-cell='particle-tab-selected'/>
 		<tab tags='particle-tab' tab-name='Global Dust'/>
 		<tab tags='particle-tab' tab-name='NoteCut Sparkle'/>
 		<tab tags='particle-tab' tab-name='NoteCut Explosion'/>
 		<tab tags='particle-tab' tab-name='SaberClash Sparkle'/>
 		<tab tags='particle-tab' tab-name='SaberClash Glow'/>
-		<tab tags='particle-tab' tab-name='Obstacle Sparkle'/>
+		<tab tags='particle-tab' tab-name='Obstacle Sparkle'/>-->
 		
 		<modifier-container child-expand-width='true' horizontal-fit='PreferredSize' pref-height='60'>
 			<string-setting text='~file-name-setting-string' hover-hint='Enter the file name of the png you want to use'

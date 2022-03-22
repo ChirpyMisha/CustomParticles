@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zenject;
 
-namespace CustomParticles.UI.Managers
+namespace CustomParticles.Configuration.UI.Managers
 {
 	internal class MenuButtonManager : IInitializable, IDisposable
 	{

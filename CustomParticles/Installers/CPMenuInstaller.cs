@@ -1,5 +1,6 @@
-﻿using CustomParticles.UI;
-using CustomParticles.UI.Managers;
+﻿using CustomParticles.Configuration;
+using CustomParticles.Configuration.UI;
+using CustomParticles.Configuration.UI.Managers;
 using SiraUtil.Logging;
 using System;
 using System.Collections.Generic;
@@ -22,9 +23,10 @@ namespace CustomParticles.Installers
 		public override void InstallBindings()
 		{
 			_siraLog.Info("Installing menu containers..");
+			Container.BindInterfacesAndSelfTo<CustomParticleConfigManager>().AsSingle();
+			Container.Bind<CustomParticlesInfoController>().FromNewComponentAsViewController().AsSingle();
 			Container.Bind<ParticlePreviewViewController>().FromNewComponentAsViewController().AsSingle();
-			Container.Bind<ParticleListViewController>().FromNewComponentAsViewController().AsSingle();
-			Container.Bind<ParticleSettingsViewController>().FromNewComponentAsViewController().AsSingle();
+			Container.Bind<CustomParticlesMainViewController>().FromNewComponentAsViewController().AsSingle();
 			Container.Bind<ParticleFlowCoordinator>().FromNewComponentOnNewGameObject().AsSingle();
 			Container.BindInterfacesTo<CustomParticlesViewManager>().AsSingle();
 			Container.BindInterfacesTo<MenuButtonManager>().AsSingle();

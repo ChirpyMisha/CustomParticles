@@ -1,0 +1,12 @@
+﻿<vertical child-control-height='true' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='https://monkeymanboy.github.io/BSML-Docs/ https://raw.githubusercontent.com/monkeymanboy/BSML-Docs/gh-pages/BSMLSchema.xsd'>
+	<vertical pref-width='70' pref-height='60'>
+		<horizontal>
+			<text font-size='3' align='TopLeft' color='#efefef' text='&lt;color=#bd0000&gt;❗&lt;/color&gt; &lt;color=#f0d86e&gt;This mod is still in alpha. The functionality is very limited.&lt;/color&gt;&#xA;If you have any feedback such as suggestions, feature ideas, or bug reports, please share it with the developer on GitHub or Discord.&#xA;Contributions are always appreciated too!&#xA;GitHub : github.com/ChirpyMisha/CustomParticles'
+					word-wrapping='true' rich-text='true'/>
+		</horizontal>
+		<horizontal>
+			<text font-size='2.5' align='TopLeft' color='#cccccc' text='If you would like to sponsor this project you can check out my Ko-fi page :&#xA;ko-fi.com/ChirpyMisha&#xA;&lt;color=#bababa&gt;&lt;size=80%&gt;Version: 0.0.1 (Alpha)&lt;/size&gt;&lt;/color&gt;'
+					 word-wrapping='true' rich-text='true'/>
+		</horizontal>
+	</vertical>
+</vertical>

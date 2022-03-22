@@ -16,9 +16,8 @@ namespace CustomParticles.Patches
 	{
 		internal static void Postfix(ref ObstacleSaberSparkleEffect __instance)
 		{
-			ParticleSystem sparklePS = Accessors.ObstacleSaberSparklePS(ref __instance);
-
-			ParticlesUtils.SetCustomParticles(sparklePS, PluginConfig.Instance.ObstacleSaberSparkleParticles);
+			if (PluginConfig.Instance.IsEnabled(PartSysID.ObstacleSparkle))
+				ParticlesUtils.SetCustomParticles(Accessors.ObstacleSaberSparklePS(ref __instance), PartSysID.ObstacleSparkle);
 		}
 	}
 }

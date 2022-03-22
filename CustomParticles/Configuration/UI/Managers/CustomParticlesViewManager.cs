@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Zenject;
 
-namespace CustomParticles.UI.Managers
+namespace CustomParticles.Configuration.UI.Managers
 {
 	internal class CustomParticlesViewManager : IInitializable, IDisposable
 	{
-		//private ParticleListViewController particleListViewController;
+		//private CustomParticlesMainViewController particleListViewController;
 		private GameplaySetupViewController gameplaySetupViewController;
 
-		public CustomParticlesViewManager(/*ParticleListViewController particleListViewController,*/ GameplaySetupViewController gameplaySetupViewController)
+		public CustomParticlesViewManager(/*CustomParticlesMainViewController particleListViewController,*/ GameplaySetupViewController gameplaySetupViewController)
 		{
 			//this.particleListViewController = particleListViewController;
 			this.gameplaySetupViewController = gameplaySetupViewController;

@@ -15,8 +15,12 @@ namespace CustomParticles.Patches
 	{
 		public static void LoadCustomParticles()
 		{
-			foreach (var ps in Resources.FindObjectsOfTypeAll<ParticleSystem>())
-				if (ps.name == "DustPS") SetCustomDustParticles(ps);
+			// WARNING: This won't be called yet when the GlobalDustParticles get enabled in the settings!
+			if (PluginConfig.Instance.IsEnabled(PartSysID.ObstacleSparkle))
+			{
+				foreach (var ps in Resources.FindObjectsOfTypeAll<ParticleSystem>())
+					if (ps.name == "DustPS") SetCustomDustParticles(ps);
+			}
 		}
 
 		private static void SetCustomDustParticles(ParticleSystem dustPS)
@@ -24,8 +28,8 @@ namespace CustomParticles.Patches
 			if (dustPS != null)
 			{
 				MainModule main = dustPS.main;
-				main.startSize = new MinMaxCurve(PluginConfig.Instance.GlobalDustParticleSizeMinimum, PluginConfig.Instance.GlobalDustParticleSizeMaximum);
-				ParticlesUtils.SetCustomParticles(dustPS, PluginConfig.Instance.GlobalDustParticles);
+				main.startSize = new MinMaxCurve(PluginConfig.Instance.GlobalDustSizeMinimum, PluginConfig.Instance.GlobalDustSizeMaximum);
+				ParticlesUtils.SetCustomParticles(dustPS, PartSysID.GlobalDust);
 			}
 			else
 				Plugin.Log.Error("DustPS couldn't be found. Global particles cannot be changed.");

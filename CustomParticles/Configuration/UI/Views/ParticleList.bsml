@@ -1,0 +1,50 @@
+﻿<vertical child-control-height='true' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='https://monkeymanboy.github.io/BSML-Docs/ https://raw.githubusercontent.com/monkeymanboy/BSML-Docs/gh-pages/BSMLSchema.xsd'>
+	<tab-selector tab-tag='particle-tab' select-cell='particle-tab-selected'/>
+	<tab tags='particle-tab' tab-name='Global&#x0a;Dust'/>
+	<tab tags='particle-tab' tab-name='NoteCut&#x0a;Sparkle'/>
+	<tab tags='particle-tab' tab-name='NoteCut&#x0a;Explosion'/>
+	<tab tags='particle-tab' tab-name='SaberClash&#x0a;Sparkle'/>
+	<tab tags='particle-tab' tab-name='SaberClash&#x0a;Glow'/>
+	<tab tags='particle-tab' tab-name='Obstacle&#x0a;Sparkle'/>
+	
+	<horizontal>
+		<!-- Left Side: Settings -->
+		<modifier-container child-expand-width='true' horizontal-fit='PreferredSize' pref-height='55' pref-width='75'>
+
+			<checkbox-setting text='Enable Custom Particles' hover-hint='Enable this setting to select your Custom Particles for the currently selected particle system.'
+										 value='ParticleSystemEnabled' apply-on-change='true' bind-value='true'/>
+			
+			<dropdown-list-setting text='Animation Mode' hover-hint='Select if/how you want the particle image to be animated.'
+										 value='AnimationMode' apply-on-change='true' bind-value='true'
+										 options='AnimationModeLabelOptionsList' formatter='AnimationModeLabelOptionsFormat'/>
+			
+			<increment-setting text='Horizontal Image Count' hover-hint='How many sprites does the spritesheet contain horizontally?'
+										 value='ImgCountX' apply-on-change='true' interactable='~is-animation-enabled' color='~is-animation-enabled-color'
+										 integer-only='true' min='1' max='420' increment='1' bind-value='true'/>
+			
+			<increment-setting text='Vertical Image Count' hover-hint='How many sprites does the spritesheet contain vertically?'
+										 value='ImgCountY' apply-on-change='true' interactable='~is-animation-enabled' color='~is-animation-enabled-color'
+										 integer-only='true' min='1' max='420' increment='1' bind-value='true'/>
+			
+			<increment-setting text='Animation Cycle Count' hover-hint='How many times should the animation loop?'
+										 value='CycleCount' apply-on-change='true' interactable='~is-animatedlifetime-enabled' color='~is-animatedlifetime-enabled-color'
+										 integer-only='true' min='0' max='420' increment='1' bind-value='true'/>
+			
+			<increment-setting text='Animation FPS' hover-hint='At what frame rate should the animation run? Setting this to 0 will make the animation cycle once through the lifetime of the particle.'
+										 value='FPS' apply-on-change='true' interactable='~is-animatedfps-enabled' color='~is-animatedfps-enabled-color'
+										 integer-only='true' min='0' max='420' increment='1' bind-value='true'/>
+
+		</modifier-container>
+		
+		<!-- Right Side: Particle List -->
+		<vertical horizontal-fit='PreferredSize' pref-height='55' pref-width='50'>
+			<vertical>
+				<list id='particleList' expand-cell='true' select-cell='particleSelect' stick-scrolling='true' show-scrollbar='true'/> <!--interactable='is-particle-system-enabled'/>-->
+			</vertical>
+
+			<vertical child-control-height='false' horizontal-fit='PreferredSize'>
+				<button text='Reload all particles' on-click='reloadParticles' pref-width='27.5'/>
+			</vertical>
+		</vertical>
+	</horizontal>
+</vertical>

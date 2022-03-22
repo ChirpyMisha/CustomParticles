@@ -94,6 +94,11 @@
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>False</Private>
+      <HintPath>$(BeatSaberDir)\Beat Saber_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
       <HintPath>$(BeatSaberDir)\Beat Saber_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
       <Private>False</Private>
@@ -127,16 +132,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\CustomParticleConfig.cs" />
+    <Compile Include="Configuration\CustomParticleConfigManager.cs" />
+    <Compile Include="Configuration\CustomParticleConfigs.cs" />
+    <Compile Include="Configuration\ParticleSystemConfig.cs" />
+    <Compile Include="Configuration\UI\CustomParticlesInfoController.cs" />
+    <Compile Include="Configuration\UI\CustomParticlesMainViewController.cs" />
+    <Compile Include="Configuration\UI\Managers\CustomParticlesViewManager.cs" />
+    <Compile Include="Configuration\UI\Managers\MenuButtonManager.cs" />
+    <Compile Include="Configuration\UI\ParticleFlowCoordinator.cs" />
+    <Compile Include="Configuration\UI\ParticlePreviewViewController.cs" />
+    <Compile Include="CustomParticle.cs" />
     <Compile Include="Installers\CPMenuInstaller.cs" />
     <Compile Include="Patches\GlobalDustParticlesController.cs" />
     <Compile Include="Patches\ObstacleSaberSparkleEffectPatch.cs" />
     <Compile Include="Patches\SaberClashParticlesEffectPatch.cs" />
-    <Compile Include="UI\Managers\CustomParticlesViewManager.cs" />
-    <Compile Include="UI\Managers\MenuButtonManager.cs" />
-    <Compile Include="UI\ParticleFlowCoordinator.cs" />
-    <Compile Include="UI\ParticleListViewController.cs" />
-    <Compile Include="UI\ParticlePreviewViewController.cs" />
-    <Compile Include="UI\ParticleSettingsViewController.cs" />
     <Compile Include="Utils\Accessors.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Configuration\PluginConfig.cs" />
@@ -149,12 +159,13 @@
     <EmbeddedResource Include="manifest.json" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Configuration\UI\Views\CustomParticlesInfo.bsml" />
+    <EmbeddedResource Include="Configuration\UI\Views\ParticleList.bsml" />
+    <EmbeddedResource Include="Configuration\UI\Views\ParticlePreview.bsml" />
+    <EmbeddedResource Include="Configuration\UI\Views\ParticleSettings.bsml" />
     <None Include="Directory.Build.props" Condition="Exists('Directory.Build.props')" />
     <None Include="Directory.Build.targets" Condition="Exists('Directory.Build.targets')" />
     <None Include="CustomParticles.csproj.user" Condition="Exists('CustomParticles.csproj.user')" />
-    <EmbeddedResource Include="UI\Views\ParticleSettings.bsml" />
-    <EmbeddedResource Include="UI\Views\ParticleList.bsml" />
-    <EmbeddedResource Include="UI\Views\ParticlePreview.bsml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="BeatSaberModdingTools.Tasks">
@@ -162,7 +173,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="System.Collections">
+      <Version>4.3.0</Version>
+    </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ParticleUnavailable.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

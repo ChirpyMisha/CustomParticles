@@ -15,20 +15,27 @@ namespace CustomParticles.Utils
 		public static Texture GetMainTexture(ParticleSystem ps) => GetMaterial(ps).mainTexture;
 		public static Material GetMaterial(ParticleSystem ps) => ps.gameObject.GetComponent<ParticleSystemRenderer>()?.material;
 
-		public static void SetCustomParticles(ParticleSystem ps, ParticleSettings settings)
+		public static void SetCustomParticles(ParticleSystem ps, PartSysID partSysID)
 		{
-			// If the texture exists, change the main texture of the particle system.
-			if (ImgUtils.ImgExists(settings.fileName))
+			CustomParticle customParticle = CustomParticleConfigManager.Instance.GetCustomParticle(partSysID);
+			if (customParticle == null)
 			{
-				// Load and set texture
-				LoadAndSetParticleImage(ps, settings.fileName);
-
-				// Enable random textures
-				if (settings.imgCountX > 1 || settings.imgCountY > 1)
-					EnableAndSetTextureSheetAnimation(ps, settings);
+				Plugin.Log.Warn($"Something went wrong while setting custom particles for particle system \"{partSysID}\". CustomParticle cannot be found.");
+				return;
 			}
-			else
-				Plugin.Log.Warn($"Failed to load image from: {ImgUtils.FullPath(settings.fileName)}");
+			if (!customParticle.IsValid)
+			{
+				Plugin.Log.Warn($"Something went wrong while setting custom particles for particle system \"{partSysID}\". CustomParticle.Texture has not been loaded properly.");
+				return;
+			}
+
+			// set texture
+			Material material = GetMaterial(ps);
+			material.mainTexture = customParticle.Texture;
+
+			// Enable random textures
+			if (customParticle.Config.AnimationMode != AnimationMode.Off)
+				EnableAndSetTextureSheetAnimation(ps, customParticle);
 		}
 
 		public static void LoadAndSetParticleImage(ParticleSystem ps, string fileName)
@@ -37,38 +44,35 @@ namespace CustomParticles.Utils
 			material.mainTexture = ImgUtils.LoadTexture(fileName);
 		}
 
-		public static void EnableAndSetTextureSheetAnimation(ParticleSystem partSys, ParticleSettings settings)
+		public static void EnableAndSetTextureSheetAnimation(ParticleSystem partSys, CustomParticle customParticle)
 		{
-			Plugin.Log.Notice("Enabling texture sheet animation");
+			CustomParticleConfig config = customParticle.Config;
+
 			// Enable texture sheet animation module and set its parameters
 			TextureSheetAnimationModule texSheetAnimation = partSys.textureSheetAnimation;
 			texSheetAnimation.enabled = true;
 			texSheetAnimation.mode = ParticleSystemAnimationMode.Grid;
-			texSheetAnimation.numTilesX = settings.imgCountX;
-			texSheetAnimation.numTilesY = settings.imgCountY;
-			texSheetAnimation.timeMode = settings.mode;
-			if (settings.mode == ParticleSystemAnimationTimeMode.Lifetime)
+			texSheetAnimation.numTilesX = config.ImgCountX;
+			texSheetAnimation.numTilesY = config.ImgCountY;
+			if (config.AnimationMode == AnimationMode.StaticRandom)
 			{
-				texSheetAnimation.startFrame = new MinMaxCurve(0, settings.imgCountX*settings.imgCountY);
+				texSheetAnimation.timeMode = ParticleSystemAnimationTimeMode.Lifetime;
+				texSheetAnimation.startFrame = new MinMaxCurve(0, config.ImgCountX * config.ImgCountY);
 				texSheetAnimation.fps = 0;
 				texSheetAnimation.cycleCount = 0;
 			}
-			else if (settings.mode == ParticleSystemAnimationTimeMode.FPS)
+			else if (config.AnimationMode == AnimationMode.AnimatedFPS)
 			{
-				
-				if (settings.fps == 0)
-				{
-					texSheetAnimation.timeMode = ParticleSystemAnimationTimeMode.Lifetime;
-					texSheetAnimation.startFrame = new MinMaxCurve(0, settings.imgCountX * settings.imgCountY);
-					texSheetAnimation.cycleCount = 1;
-				}
-				else
-				{
-					texSheetAnimation.startFrame = new MinMaxCurve(0, 0);
-					texSheetAnimation.fps = settings.fps;
-				}
+				texSheetAnimation.timeMode = ParticleSystemAnimationTimeMode.FPS;
+				texSheetAnimation.startFrame = new MinMaxCurve(0, 0);
+				texSheetAnimation.fps = config.FPS;
 			}
-			// Show your accuracy as a percentage without drops from misses or a lowered combo multiplier. (To use the counter in-game requires Counters+ to be installed).
+			else if (config.AnimationMode == AnimationMode.AnimatedLifetime)
+			{
+				texSheetAnimation.timeMode = ParticleSystemAnimationTimeMode.Lifetime;
+				texSheetAnimation.startFrame = new MinMaxCurve(0, config.ImgCountX * config.ImgCountY);
+				texSheetAnimation.cycleCount = 1;
+			}
 		}
 
 		//public static void SaveTexture(ParticleSystem partSys, string fileName)

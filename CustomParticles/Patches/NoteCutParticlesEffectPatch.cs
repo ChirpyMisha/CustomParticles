@@ -15,11 +15,11 @@ namespace CustomParticles.Patches
 	{
 		internal static void Postfix(ref NoteCutParticlesEffect __instance)
 		{
-			ParticleSystem sparklePS = Accessors.NoteCutSparklePS(ref __instance);
-			ParticleSystem explosionPS = Accessors.NoteCutExplosionPS(ref __instance);
+			if (PluginConfig.Instance.IsEnabled(PartSysID.NoteCutSparkle))
+				ParticlesUtils.SetCustomParticles(Accessors.NoteCutSparklePS(ref __instance), PartSysID.NoteCutSparkle);
 
-			ParticlesUtils.SetCustomParticles(sparklePS, PluginConfig.Instance.NoteCutSparkleParticles);
-			ParticlesUtils.SetCustomParticles(explosionPS, PluginConfig.Instance.NoteCutExplosionParticles);
+			if (PluginConfig.Instance.IsEnabled(PartSysID.NoteCutExplosion))
+				ParticlesUtils.SetCustomParticles(Accessors.NoteCutExplosionPS(ref __instance), PartSysID.NoteCutExplosion);
 		}
 	}
 }

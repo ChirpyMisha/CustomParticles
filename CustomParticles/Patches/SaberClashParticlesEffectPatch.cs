@@ -15,11 +15,11 @@ namespace CustomParticles.Patches
 	{
 		internal static void Postfix(ref NoteCutParticlesEffect __instance)
 		{
-			ParticleSystem glowPS = Accessors.SaberClashGlowPS(ref __instance);
-			ParticleSystem sparklePS = Accessors.SaberClashSparklePS(ref __instance);
+			if (PluginConfig.Instance.IsEnabled(PartSysID.SaberClashGlow))
+				ParticlesUtils.SetCustomParticles(Accessors.SaberClashGlowPS(ref __instance), PartSysID.SaberClashGlow);
 
-			ParticlesUtils.SetCustomParticles(glowPS, PluginConfig.Instance.SaberClashGlowParticles);
-			ParticlesUtils.SetCustomParticles(sparklePS, PluginConfig.Instance.SaberClashSparkleParticles);
+			if (PluginConfig.Instance.IsEnabled(PartSysID.SaberClashSparkle))
+				ParticlesUtils.SetCustomParticles(Accessors.SaberClashSparklePS(ref __instance), PartSysID.SaberClashSparkle);
 		}
 	}
 }
